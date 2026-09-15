@@ -15,13 +15,16 @@ Model evaluation supports one process on one CUDA GPU. CPU execution is for test
 
 ## Install
 
-From a checkout, in your Python environment:
+Install from PyPI in your Python environment:
 
 ```bash
-python -m pip install .
+pip install evalmetry
 ```
 
 Evalmetry requires Python >=3.10. Use a compatible CUDA build of PyTorch. The Python import and CLI are both `evalmetry`.
+
+To install this release explicitly, use `pip install evalmetry==1.0.0`.
+For development, clone this repository and run `python -m pip install -e .`.
 
 ## Quick start
 

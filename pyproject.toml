@@ -4,12 +4,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evalmetry"
-version = "0.1.0"
+version = "1.0.0"
 description = "A research toolkit for measuring and analyzing model behavior."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
+keywords = ["lm-eval", "language-models", "evaluation", "interpretability"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 
 # Import lm_eval from the active Python environment, including editable installs.
 # These two versions are the reviewed default pair. Extras can add requirements,
@@ -25,7 +31,15 @@ dependencies = [
     # Needed by models whose tokenizers must be converted from SentencePiece.
     "sentencepiece",
     "protobuf",
+    "pyyaml",
+    "tqdm",
 ]
+
+[project.urls]
+Homepage = "https://github.com/minguinho26/evalmetry"
+Repository = "https://github.com/minguinho26/evalmetry"
+Issues = "https://github.com/minguinho26/evalmetry/issues"
+Releases = "https://github.com/minguinho26/evalmetry/releases"
 
 [project.optional-dependencies]
 # Retain the existing name for the default pair with pinned reporting libraries.
