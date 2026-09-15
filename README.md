@@ -53,3 +53,5 @@ Evaluation results, manifests and collected signals are written under the select
 ## License
 
 Evalmetry is released under the MIT License.
+
+This project is built on top of [EleutherAI's lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness).
