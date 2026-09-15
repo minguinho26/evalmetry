@@ -1,0 +1,52 @@
+# Evalmetry
+
+A research toolkit for measuring and analyzing model behavior.
+
+Evalmetry evaluates Hugging Face language models with lm-eval and collects internal signals from the same forward passes used for scoring.
+
+## Features
+
+- Benchmark scores with per-layer logit lens and layer similarity.
+- Optional attention, hidden states, custom hooks and module statistics.
+- Custom benchmarks, LLM judge scoring and modified-model adapters.
+- Resumable runs, saved-data readers and comparison reports.
+
+Model evaluation supports one process on one CUDA GPU. CPU execution is for test fixtures and verification tools. Reports and saved-data readers do not require a GPU.
+
+## Install
+
+From a checkout, in your Python environment:
+
+```bash
+python -m pip install .
+```
+
+Evalmetry requires Python >=3.10. Use a compatible CUDA build of PyTorch. The Python import and CLI are both `evalmetry`.
+
+## Quick start
+
+Use `run` to evaluate eight documents and save the default signals:
+
+```bash
+evalmetry run --model-args pretrained=Qwen/Qwen3-0.6B,dtype=bfloat16,device=cuda \
+    --tasks arc_easy --num-fewshot 0 --limit 8 --batch-size 1 \
+    --output results/quickstart
+```
+
+Use `report` to generate a report from that run:
+
+```bash
+evalmetry report results/quickstart --output report/quickstart
+```
+
+The first run downloads the model and dataset if needed. Reusing a run directory resumes its recorded configuration; use a different directory for a different experiment.
+
+Other commands: `collect-research-data` adds optional tensors to a completed run, `debug` reads a saved module trace, and `module-stats` reads saved statistics. Traces and statistics must be enabled during collection. Use `evalmetry <command> --help` for options.
+
+## Reading results
+
+Evaluation results, manifests and collected signals are written under the selected output directory. Read saved signals with `evalmetry.load_signals(run_dir)`; `evalmetry.describe_schema()` describes the columns.
+
+## License
+
+Evalmetry is released under the MIT License.
