@@ -2,11 +2,12 @@
 
 ## 1.1.0 — September 20, 2026
 
-Published on [PyPI](https://pypi.org/project/evalmetry/1.1.0/).
-The verified wheel and sdist were uploaded directly with Twine. GitHub Release
-creation is still pending. The existing workflow uploads when a GitHub Release
-is published; before creating the 1.1.0 GitHub Release, account for that trigger
-so it does not attempt to rebuild and upload this already-published version.
+Published on [PyPI](https://pypi.org/project/evalmetry/1.1.0/) and released on
+[GitHub](https://github.com/minguinho26/evalmetry/releases/tag/v1.1.0).
+The verified wheel and sdist were uploaded directly with Twine, so the
+`Publish to PyPI` workflow was disabled while the 1.1.0 GitHub Release was
+published and re-enabled immediately afterwards. That kept the release trigger
+from rebuilding and re-uploading this already-published version.
 
 ### Breaking change
 
