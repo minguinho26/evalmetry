@@ -1,0 +1,512 @@
+[
+  {
+    "task": "arc_easy",
+    "run": "EleutherAI_pythia-160m-collect",
+    "verdict": "PASS 880s",
+    "log_sha256": "439e8b797cea2474e526c6f15be58ec5714ac1c49f0a119d928f52bb83dc6ae2",
+    "identity_lines": [
+      "log probabilities: 799 requests, 799 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -33.250000 vs -33.250000)",
+      "log probabilities: 799 requests, 799 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -33.250000 vs -33.250000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "EleutherAI_pythia-160m",
+    "verdict": "PASS 66s",
+    "log_sha256": "65ff273c078768b15db1ef2af7d094bc9d7de5b0d860513b50db559e704128f8",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -33.250000 vs -33.250000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "HuggingFaceTB_SmolLM2-135M-collect",
+    "verdict": "PASS 1591s",
+    "log_sha256": "3e153e73dd26eeead8a5e898fd1935c033a25e5a7402fca864eb6c37387d0b2f",
+    "identity_lines": [
+      "log probabilities: 799 requests, 799 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -26.000000 vs -26.000000)",
+      "log probabilities: 799 requests, 799 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -26.000000 vs -26.000000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "HuggingFaceTB_SmolLM2-135M",
+    "verdict": "PASS 105s",
+    "log_sha256": "b7ae964cd1bf4d2c95fc02e16587312dbd9bc079a39752bb1d629f18221141dd",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -26.000000 vs -26.000000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "HuggingFaceTB_SmolLM3-3B",
+    "verdict": "PASS 250s",
+    "log_sha256": "760fbc7e24b6fa94e79169d2caf274f6d51149281e7883c94b13516b66f80343",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -18.125000 vs -18.125000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "Qwen_Qwen2.5-0.5B",
+    "verdict": "PASS 109s",
+    "log_sha256": "9c3bc3fc12013df707c01c06c9ca79003977b82a506d116c4efc1c589b79c371",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -20.625000 vs -20.625000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "Qwen_Qwen3-0.6B",
+    "verdict": "PASS 125s",
+    "log_sha256": "d96a42281949f533cb6287beed001673283bf60a74bea7ed30abf7db858f36d4",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -26.750000 vs -26.750000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "allenai_OLMo-2-0425-1B",
+    "verdict": "PASS 181s",
+    "log_sha256": "abbedb9dd67fe8d99248041a3deceb8a8677c1eb700d15d074e5342323db6aa2",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -21.625000 vs -21.625000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "hf-internal-testing_tiny-random-CohereForCausalLM",
+    "verdict": "PASS 57s",
+    "log_sha256": "c0c8d39e5179fc93a043fb0200a0a1b650d29f7e4db9e23cec03b229abb91326",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -180.000000 vs -180.000000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "hf-internal-testing_tiny-random-MistralForCausalLM",
+    "verdict": "PASS 52s",
+    "log_sha256": "fbba80f5c5f0016d5ec61a7739a3530b15f6a916db61fdacd8c22aa4dd9cdc11",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -135.000000 vs -135.000000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "microsoft_Phi-3-mini-4k-instruct-collect",
+    "verdict": "PASS 2240s",
+    "log_sha256": "86a40529406b5552cbc309a661b00379e34faead1013e1943ba9e956d3ab1953",
+    "identity_lines": [
+      "log probabilities: 799 requests, 799 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -20.875000 vs -20.875000)",
+      "log probabilities: 799 requests, 799 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -20.875000 vs -20.875000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "microsoft_Phi-3-mini-4k-instruct",
+    "verdict": "PASS 203s",
+    "log_sha256": "c63e67e05ece6282afbcd72457268d33880797924a753c8090586a8596d639d1",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -20.875000 vs -20.875000)"
+    ]
+  },
+  {
+    "task": "arc_easy",
+    "run": "unsloth_gemma-2-2b",
+    "verdict": "PASS 249s",
+    "log_sha256": "a3e5d8ee5f17e525d8163063514b11348120a2194b19353377c22e3dcfaddcac",
+    "identity_lines": [
+      "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -16.500000 vs -16.500000)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "EleutherAI_pythia-160m-collect",
+    "verdict": "PASS 13355s",
+    "log_sha256": "724b262890c7d0043873b4a1e5a5abd5bc3c10bd81962491e9d1fd5c5c6ce8f8",
+    "identity_lines": [
+      "generations: 8 (document, filter) requests, 8 identical, 0 differing (0 of them in the raw generation)",
+      "generations: 8 (document, filter) requests, 8 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "EleutherAI_pythia-160m",
+    "verdict": "PASS 494s",
+    "log_sha256": "c081ed5870c64d8d2aae607058abfd5219c80b1b5323f2532860b72d8606dee3",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "HuggingFaceTB_SmolLM2-135M-collect",
+    "verdict": "PASS 15924s",
+    "log_sha256": "96f6f0cb5f70e7d24c90298004e650b61f1c3c9cee87743dec5efd02f1db8f96",
+    "identity_lines": [
+      "generations: 8 (document, filter) requests, 8 identical, 0 differing (0 of them in the raw generation)",
+      "generations: 8 (document, filter) requests, 8 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "HuggingFaceTB_SmolLM2-135M",
+    "verdict": "PASS 733s",
+    "log_sha256": "916afd2182f84a4b5e7a89416d3446929775d818506a5da403d1989ed1090830",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "HuggingFaceTB_SmolLM3-3B",
+    "verdict": "PASS 956s",
+    "log_sha256": "fd17a9fa58bfd06c4de61477fee66972eda0947acc65ca74ca0add54ccafd501",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "Qwen_Qwen2.5-0.5B",
+    "verdict": "PASS 1318s",
+    "log_sha256": "87c05214afab059b3a925ae937af810db5aa26cc0633128a2790c0b4e694ec47",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "Qwen_Qwen3-0.6B",
+    "verdict": "PASS 852s",
+    "log_sha256": "1a040e93fb1d6b72ef1e6953c6c7319ae28228385650c600725a4766b9f19b12",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "allenai_OLMo-2-0425-1B",
+    "verdict": "PASS 584s",
+    "log_sha256": "6669cc7f6ed78a58e7321e7e9df325298b6d38b9f536579f57013ac00164c40e",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "hf-internal-testing_tiny-random-CohereForCausalLM",
+    "verdict": "PASS 223s",
+    "log_sha256": "2fc78706af74d892b5c7d291234839f5e94cc006fb95f805ad5d22d1ee30a81d",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "hf-internal-testing_tiny-random-MistralForCausalLM",
+    "verdict": "PASS 224s",
+    "log_sha256": "0822455be777fef0d74063c863d624729ded9326e6f8f5610664b79b312971eb",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "microsoft_Phi-3-mini-4k-instruct-collect",
+    "verdict": "PASS 15703s",
+    "log_sha256": "709f91c063f90f8fc537b17df2e19907630f89b02cb97559933977fb073f0aa5",
+    "identity_lines": [
+      "generations: 8 (document, filter) requests, 8 identical, 0 differing (0 of them in the raw generation)",
+      "generations: 8 (document, filter) requests, 8 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "microsoft_Phi-3-mini-4k-instruct",
+    "verdict": "PASS 1319s",
+    "log_sha256": "d0a5e544a87b9407bfd3cdd13fc5a55cc8d2eadd420b269df1bdb784af5c004e",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "gsm8k",
+    "run": "unsloth_gemma-2-2b",
+    "verdict": "PASS 1022s",
+    "log_sha256": "5393bad051186dae0f6456acdf970e78c931be4ccfaaba61fe787a17ad9a4917",
+    "identity_lines": [
+      "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "EleutherAI_pythia-160m",
+    "verdict": "PASS 498s",
+    "log_sha256": "c903b2db300c3265882c6d3be9a493021983f4bafd7c33ded9a21869005e6b80",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -51.000000 vs -51.000000)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "HuggingFaceTB_SmolLM2-135M",
+    "verdict": "PASS 1189s",
+    "log_sha256": "e2ad99458bbdea33d6bbdf3e3e8de9c1d3a5416560a4276d9dc5ce2c96900068",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -39.000000 vs -39.000000)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "HuggingFaceTB_SmolLM3-3B",
+    "verdict": "PASS 2669s",
+    "log_sha256": "6bdf215933973ad1c25111e3c3a13c9d909e9ebfabc960e7ec79494c1e46f2c6",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -46.000000 vs -46.000000)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "Qwen_Qwen2.5-0.5B",
+    "verdict": "PASS 1353s",
+    "log_sha256": "362b3f8156a9a22ecfe3c116c7562d954144a4606f35168f98b8601828fccd4a",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -45.750000 vs -45.750000)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "Qwen_Qwen3-0.6B",
+    "verdict": "PASS 1644s",
+    "log_sha256": "8cfe83cbfc45c1f380f6a71dc703e88d0eb71ada6cd6bea8ec421ee861cb1279",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -47.500000 vs -47.500000)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "allenai_OLMo-2-0425-1B",
+    "verdict": "PASS 1171s",
+    "log_sha256": "b28a957f931b56637475f321457cf2315e8fac6686b245dbf2c121ce164750cb",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -42.250000 vs -42.250000)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "hf-internal-testing_tiny-random-CohereForCausalLM",
+    "verdict": "PASS 322s",
+    "log_sha256": "c71c8c044f74fc92fe1302e4631312ad8ad63fe65325c7fda7e8a665d3254e50",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -125.000000 vs -125.000000)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "hf-internal-testing_tiny-random-MistralForCausalLM",
+    "verdict": "PASS 231s",
+    "log_sha256": "cf0ebe358e7a83e8cb1d2254ac4774a7088c5c41a282fca384555497eb2bcd5c",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -113.500000 vs -113.500000)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "microsoft_Phi-3-mini-4k-instruct",
+    "verdict": "PASS 2322s",
+    "log_sha256": "a3317713e729a75b4dbb75310ae9b49a30801811b1c1e92d55f0d09fc21c16f1",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -41.750000 vs -41.750000)"
+    ]
+  },
+  {
+    "task": "hellaswag",
+    "run": "unsloth_gemma-2-2b",
+    "verdict": "PASS 2750s",
+    "log_sha256": "317c35f43011598b4d43fdbadfbc5175e61ce86f53e64fd2ab9bb17ef43efb6a",
+    "identity_lines": [
+      "log probabilities: 40168 requests, 40168 bit-identical, max abs diff 0.000e+00 (hellaswag doc 0 choice 0: -41.250000 vs -41.250000)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "EleutherAI_pythia-160m",
+    "verdict": "PASS 35s",
+    "log_sha256": "114f5fad52459495acb2104d4fa1c172f14d548b0476f2e8ed0187fe162a613d",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -4.750000 vs -4.750000)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "HuggingFaceTB_SmolLM2-135M",
+    "verdict": "PASS 44s",
+    "log_sha256": "ecbaac2d5621cc1fdfa7b11fc3bac4408d16f39689986c52ea5e239e1df688dc",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -1.507812 vs -1.507812)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "HuggingFaceTB_SmolLM3-3B",
+    "verdict": "PASS 69s",
+    "log_sha256": "1e7d42f12779ba42ff08556d054b35bdb4b1b02fc02fcc944c87c9d2e020d7bd",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -0.032227 vs -0.032227)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "Qwen_Qwen2.5-0.5B",
+    "verdict": "PASS 43s",
+    "log_sha256": "602997a343b401adcfdef6b2023ef8b48743043811a47328c7597eedc0a310c8",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -0.388672 vs -0.388672)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "Qwen_Qwen3-0.6B",
+    "verdict": "PASS 47s",
+    "log_sha256": "4ec08f5ecadf55ce3ff01f89a4b0ad952a5f7aff76116271990998c8dd4cd6d3",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -1.804688 vs -1.804688)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "allenai_OLMo-2-0425-1B",
+    "verdict": "PASS 50s",
+    "log_sha256": "5fc39a0b642802aa7f8acd1d8bf1d6f9237547f2ee1c6d69363765ca09bbc485",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -1.898438 vs -1.898438)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "hf-internal-testing_tiny-random-CohereForCausalLM",
+    "verdict": "PASS 33s",
+    "log_sha256": "4b18c612dacdb3aa08ba9456fe0c60cd636ab21e5e6e793af29d132890f62f5f",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -6.937500 vs -6.937500)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "hf-internal-testing_tiny-random-MistralForCausalLM",
+    "verdict": "PASS 35s",
+    "log_sha256": "adb909deb67ea48e06b482efd1e233cfe7a0be9b32f910981ec446a4994e2628",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -10.312500 vs -10.312500)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "microsoft_Phi-3-mini-4k-instruct",
+    "verdict": "PASS 75s",
+    "log_sha256": "99e0a9929252e55ce8e471821d2843bebf0e66996aebe7a17a231392b9b7cb80",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -0.828125 vs -0.828125)"
+    ]
+  },
+  {
+    "task": "mmlu_high_school_psychology",
+    "run": "unsloth_gemma-2-2b",
+    "verdict": "PASS 87s",
+    "log_sha256": "ddfbfe386a72fbc16081725bcae47279577ba3afb74dd4a2f9412848738a18d4",
+    "identity_lines": [
+      "log probabilities: 2180 requests, 2180 bit-identical, max abs diff 0.000e+00 (mmlu_high_school_psychology doc 0 choice 0: -0.394531 vs -0.394531)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "EleutherAI_pythia-160m",
+    "verdict": "PASS 63s",
+    "log_sha256": "3407cb2f25735d332af4b809ae185a1d346c392e7d09dab2883edd8f94cbe69e",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "HuggingFaceTB_SmolLM2-135M",
+    "verdict": "PASS 197s",
+    "log_sha256": "7a0a2dbf25ddc6d1ad5a7ff8c6c4a2b1b24969e5e35fdf0f926c79efe6486c9a",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "HuggingFaceTB_SmolLM3-3B",
+    "verdict": "PASS 189s",
+    "log_sha256": "ef2dad962a834c0f1bd2dd5e407ed184837532484baaa017781dc7323d83bf0c",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "Qwen_Qwen2.5-0.5B",
+    "verdict": "PASS 322s",
+    "log_sha256": "3e821cd86c42c674b36b5112ae6fba25ed93ff7b468e45d89ae228ad524659af",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "Qwen_Qwen3-0.6B",
+    "verdict": "PASS 411s",
+    "log_sha256": "e9d3955b9e6194fd5d06c0a7b6272ce214103ad88db1dc028061a71b07080eca",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "allenai_OLMo-2-0425-1B",
+    "verdict": "PASS 141s",
+    "log_sha256": "e3ba222d0591ad4901556e73cbcaf1f0b315ccbb9fa63afa8b8930b9306ab0bb",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "hf-internal-testing_tiny-random-CohereForCausalLM",
+    "verdict": "PASS 233s",
+    "log_sha256": "8a9d6179be590c717d6dac0becf872473087c24f1df8ea35f20244478dcb65ac",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "hf-internal-testing_tiny-random-MistralForCausalLM",
+    "verdict": "PASS 148s",
+    "log_sha256": "8a9a82b227a7dadc141a45a00a0539a6a38cc987671714b67a078d6526ecd50a",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "microsoft_Phi-3-mini-4k-instruct",
+    "verdict": "PASS 225s",
+    "log_sha256": "d426c25d8ca8c84f690be2fc157148505bcca0d458dcdd2b0b201aafa057d046",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  },
+  {
+    "task": "triviaqa",
+    "run": "unsloth_gemma-2-2b",
+    "verdict": "PASS 200s",
+    "log_sha256": "c11dda08cb794305d02e532e023fc6efdc535e02e4670084e382a9c0bd68869f",
+    "identity_lines": [
+      "generations: 200 (document, filter) requests, 200 identical, 0 differing (0 of them in the raw generation)"
+    ]
+  }
+]

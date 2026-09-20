@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-20",
+  "issue": "gold_arrival_depth accepted zero-based rank 10 for top_k=10",
+  "fix": "rank >= top_k terminates the suffix",
+  "regression": "4 boundary cases passed",
+  "affected_historical_files": [
+    "prediction_depth.parquet: measure=gold_entered_top10",
+    "run_summary.tsv: gold_top10_depth*",
+    "depth_correlations.tsv: gold_top10_depth",
+    "depth_overview.png: gold top-10 panel"
+  ],
+  "observed_final_rank_10_rows": 215,
+  "gold_arrival_rows": 25821,
+  "recalculation": "Original 7-model per-layer signals were not found under /home/modulabs or /tmp. Existing historical files retained unchanged; affected metrics excluded from public showcase. Final ranks alone cannot recover intermediate-layer arrival.",
+  "unaffected": "settled_on_own_answer rows, settle_depth summaries, task scores and stock/traced parity"
+}

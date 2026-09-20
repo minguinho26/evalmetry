@@ -1,0 +1,753 @@
+{
+  "date": "2026-09-20",
+  "what": "chunk 불변성 비교(verify_chunk_invariance.compare)가 Qwen3-8B에서 OOM으로 죽은 뒤, 더 작은 모델에서 이 검사가 실제로 동작하는지와 메모리가 어디까지 버티는지를 확인한 기록. 등록된 model_type별 tiny 체크포인트 하나씩과, 행 수를 늘려가는 실모델 사다리를 돌렸다.",
+  "commit": "938ed33349b2ef9af23817ce3b328bcbc49faba0",
+  "environment": {
+    "gpu": "NVIDIA RTX A5000 24GB",
+    "driver": "535.261.03",
+    "cuda": "12.8",
+    "torch": "2.8.0+cu128",
+    "transformers": "5.16.1",
+    "lm_eval": "0.4.13",
+    "python_env": "/home/modulabs/venvs/evalmetry-sweep",
+    "host_ram_gib": 61,
+    "ram_available_at_start_gib": 40
+  },
+  "workload": {
+    "task": "arc_easy",
+    "documents": 4,
+    "batch_size": 4,
+    "dtype": "bfloat16",
+    "device": "cuda",
+    "modules": "layers\\.\\d+\\.mlp$",
+    "axes": "both",
+    "extremes": 8,
+    "chunks_compared": [
+      65536,
+      257
+    ],
+    "note": "257은 실제로 관측을 분할시키는 값이라 비교가 의미를 갖는다. 모듈 선택이 전 레이어인 것이 기존 실모델 경로와의 핵심 차이다."
+  },
+  "baseline_that_existed": {
+    "script": "scripts/verify_audit_extensions.py (verify_chunk_invariance.py --real 이 호출)",
+    "conditions": "CPU, float32, 2문서, layers\\.0\\.mlp$ 한 레이어, tiny 체크포인트",
+    "why_it_mattered": "이 조건에서는 행이 수천 개라 메모리 문제가 드러날 수 없다. 여태 이 검사가 통과해 온 것은 이 규모에서였다."
+  },
+  "results": [
+    {
+      "family": "llama",
+      "model": "hf-tiny-v2/tiny-random-LlamaForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 5148,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3372,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 1008,
+        "axis_dataset": 276,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1152602,
+      "peak_rss_gib": 2.03,
+      "seconds": 44.5,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "mistral",
+      "model": "HuggingFaceM4/tiny-random-MistralForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 3984,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 2524,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 752,
+        "axis_dataset": 216,
+        "exclusions": 0
+      },
+      "statistics_bytes": 924876,
+      "peak_rss_gib": 2.04,
+      "seconds": 45.9,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "qwen2",
+      "model": "hf-tiny-v2/tiny-random-Qwen2ForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4684,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3028,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 912,
+        "axis_dataset": 252,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1061554,
+      "peak_rss_gib": 2.14,
+      "seconds": 46.3,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "qwen3",
+      "model": "hf-tiny-v2/tiny-random-Qwen3ForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4684,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3028,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 912,
+        "axis_dataset": 252,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1061218,
+      "peak_rss_gib": 2.13,
+      "seconds": 46.4,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "qwen3_moe",
+      "model": "hf-tiny-v2/tiny-random-Qwen3MoeForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4684,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3028,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 912,
+        "axis_dataset": 252,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1061262,
+      "peak_rss_gib": 2.14,
+      "seconds": 46.0,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "qwen3_5_text",
+      "model": "hf-tiny-v2/tiny-random-Qwen3_5ForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4756,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3080,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 928,
+        "axis_dataset": 256,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1074014,
+      "peak_rss_gib": 2.19,
+      "seconds": 47.6,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "gemma",
+      "model": "hf-tiny-v2/tiny-random-GemmaForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4744,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3076,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 924,
+        "axis_dataset": 252,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1073281,
+      "peak_rss_gib": 2.38,
+      "seconds": 49.5,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "gemma2",
+      "model": "hf-tiny-v2/tiny-random-Gemma2ForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4744,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3076,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 924,
+        "axis_dataset": 252,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1074980,
+      "peak_rss_gib": 2.37,
+      "seconds": 49.1,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "gemma3_text",
+      "model": "hf-tiny-v2/tiny-random-Gemma3ForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4744,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3076,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 924,
+        "axis_dataset": 252,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1074918,
+      "peak_rss_gib": 2.37,
+      "seconds": 49.5,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "olmo2",
+      "model": "hf-tiny-v2/tiny-random-Olmo2ForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4684,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3028,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 912,
+        "axis_dataset": 252,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1063817,
+      "peak_rss_gib": 2.17,
+      "seconds": 46.6,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "cohere",
+      "model": "hf-tiny-v2/tiny-random-CohereForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4780,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3096,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 932,
+        "axis_dataset": 260,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1076741,
+      "peak_rss_gib": 2.17,
+      "seconds": 47.7,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "phi",
+      "model": "hf-tiny-v2/tiny-random-PhiForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4736,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3064,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 924,
+        "axis_dataset": 256,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1068138,
+      "peak_rss_gib": 2.02,
+      "seconds": 44.8,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "phi3",
+      "model": "hf-tiny-v2/tiny-random-Phi3ForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 5076,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3320,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 992,
+        "axis_dataset": 272,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1139724,
+      "peak_rss_gib": 2.07,
+      "seconds": 45.3,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "gpt_neox",
+      "model": "hf-tiny-v2/tiny-random-GPTNeoXForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 7048,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 4736,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 1440,
+        "axis_dataset": 380,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1558995,
+      "peak_rss_gib": 2.04,
+      "seconds": 44.9,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "smollm3",
+      "model": "hf-tiny-v2/tiny-random-SmolLM3ForCausalLM",
+      "group": "tiny-per-family",
+      "exit_code": 0,
+      "rows_total": 4684,
+      "rows": {
+        "forwards": 4,
+        "observations": 52,
+        "axis_stats": 3028,
+        "extremes": 416,
+        "routing": 0,
+        "samples": 16,
+        "dataset": 4,
+        "axis_samples": 912,
+        "axis_dataset": 252,
+        "exclusions": 0
+      },
+      "statistics_bytes": 1061562,
+      "peak_rss_gib": 2.35,
+      "seconds": 48.0,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "llama",
+      "model": "HuggingFaceTB/SmolLM2-135M",
+      "group": "real-ladder",
+      "exit_code": 0,
+      "rows_total": 658024,
+      "rows": {
+        "forwards": 4,
+        "observations": 780,
+        "axis_stats": 469980,
+        "extremes": 6240,
+        "routing": 0,
+        "samples": 240,
+        "dataset": 60,
+        "axis_samples": 144300,
+        "axis_dataset": 36420,
+        "exclusions": 0
+      },
+      "statistics_bytes": 133289376,
+      "peak_rss_gib": 4.08,
+      "seconds": 130.8,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "qwen2",
+      "model": "Qwen/Qwen2.5-0.5B",
+      "group": "real-ladder",
+      "exit_code": 0,
+      "rows_total": 802660,
+      "rows": {
+        "forwards": 4,
+        "observations": 624,
+        "axis_stats": 575472,
+        "extremes": 4992,
+        "routing": 0,
+        "samples": 192,
+        "dataset": 48,
+        "axis_samples": 176832,
+        "axis_dataset": 44496,
+        "exclusions": 0
+      },
+      "statistics_bytes": 162804959,
+      "peak_rss_gib": 4.65,
+      "seconds": 144.5,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "qwen3",
+      "model": "Qwen/Qwen3-0.6B",
+      "group": "real-ladder",
+      "exit_code": 0,
+      "rows_total": 1065460,
+      "rows": {
+        "forwards": 4,
+        "observations": 728,
+        "axis_stats": 764568,
+        "extremes": 5824,
+        "routing": 0,
+        "samples": 224,
+        "dataset": 56,
+        "axis_samples": 234976,
+        "axis_dataset": 59080,
+        "exclusions": 0
+      },
+      "statistics_bytes": 215771413,
+      "peak_rss_gib": 5.91,
+      "seconds": 175.8,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "olmo2",
+      "model": "allenai/OLMo-2-0425-1B",
+      "group": "real-ladder",
+      "exit_code": 0,
+      "rows_total": 1198660,
+      "rows": {
+        "forwards": 4,
+        "observations": 416,
+        "axis_stats": 862880,
+        "extremes": 3328,
+        "routing": 0,
+        "samples": 128,
+        "dataset": 32,
+        "axis_samples": 265344,
+        "axis_dataset": 66528,
+        "exclusions": 0
+      },
+      "statistics_bytes": 241862612,
+      "peak_rss_gib": 8.88,
+      "seconds": 217.5,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "gemma2",
+      "model": "unsloth/gemma-2-2b",
+      "group": "real-ladder",
+      "exit_code": 0,
+      "rows_total": 2188216,
+      "rows": {
+        "forwards": 4,
+        "observations": 676,
+        "axis_stats": 1575860,
+        "extremes": 5408,
+        "routing": 0,
+        "samples": 208,
+        "dataset": 52,
+        "axis_samples": 484588,
+        "axis_dataset": 121420,
+        "exclusions": 0
+      },
+      "statistics_bytes": 443349089,
+      "peak_rss_gib": 9.44,
+      "seconds": 307.0,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    },
+    {
+      "family": "phi3",
+      "model": "microsoft/Phi-3-mini-4k-instruct",
+      "group": "real-ladder",
+      "exit_code": 0,
+      "rows_total": 3583236,
+      "rows": {
+        "forwards": 4,
+        "observations": 832,
+        "axis_stats": 2582400,
+        "extremes": 6656,
+        "routing": 0,
+        "samples": 256,
+        "dataset": 64,
+        "axis_samples": 794112,
+        "axis_dataset": 198912,
+        "exclusions": 0
+      },
+      "statistics_bytes": 730775409,
+      "peak_rss_gib": 14.07,
+      "seconds": 459.1,
+      "chunk_comparison_equal": true,
+      "chunks_compared": [
+        65536,
+        257
+      ],
+      "checks": {
+        "all_repeats_ok": true,
+        "inputs_identical": true,
+        "scoring_identical": true,
+        "statistics_equal_across_chunks_and_repeats": true
+      }
+    }
+  ],
+  "coverage": {
+    "registered_model_types": 18,
+    "covered_by_tiny_checkpoints": 15,
+    "not_covered": {
+      "mixtral": "vocab이 tokenizer와 맞는 tiny 체크포인트가 없다. 레지스트리 항목은 llama·mistral이 쓰는 _LLAMA_STYLE과 같은 객체다.",
+      "gemma4": "gated이거나 더 새로운 checkpoint가 필요하다.",
+      "gemma4_text": "gated이거나 더 새로운 checkpoint가 필요하다."
+    }
+  },
+  "findings": [
+    "21종 전원 exit 0이고 chunk 65536 대 257 비교가 전부 equal이다. 검사 자체는 모든 패밀리에서 정상 동작한다. OOM은 정확성 문제가 아니라 규모 문제다.",
+    "메모리는 행 수에 선형이다. 사다리 6종의 기울기는 기준선 2.1 GiB를 뺀 기준으로 3.01~5.66 GiB/백만행이다. 앞서 read_db를 직접 재서 얻은 행당 1571 B (두 DB면 백만행당 3.14 GiB)와 일치한다. 서로 독립적인 두 측정이 같은 값을 가리킨다.",
+    "이 장비에서 확인된 상한은 Phi-3-mini의 3,583,236행 / 14.07 GiB다. 여기까지는 통과한다.",
+    "행 수는 레이어 수 × (hidden + intermediate) × 문서 수로 늘어난다. 모델 크기만이 아니라 문서 수도 같은 비중으로 작용하므로, 같은 모델이라도 문서를 줄이면 검사가 가능해질 수 있다.",
+    "용량은 전부 axis 테이블에서 온다. Phi-3-mini 기준 axis_stats 2,582,400 + axis_samples 794,112 + axis_dataset 198,912행이 전체 3,583,236행의 99.7%다. observations는 832행이다.",
+    "peak RSS는 프로세스 전체의 최대치라 모델 로드까지 포함한다. 비교 자체의 비용에 대한 상한이며, OLMo-2-1B가 기울기에서 튀는 것(5.66)도 이 때문으로 보인다."
+  ],
+  "not_verified": [
+    "Qwen3-8B 8문서(11,002,904행)에서의 OOM은 이미 관측했고, 위 기울기로 외삽하면 약 35~39 GiB다. 4문서로 줄이면 약 5.5M행 / 약 19 GiB가 되어 통과할 가능성이 높지만 이것은 외삽이며 측정하지 않았다. 확인하려면 16 GB 재다운로드가 필요하다.",
+    "arc_easy·4문서·mlp 모듈·bfloat16 한정이다. 다른 태스크나 모듈 선택으로 외삽하지 않는다.",
+    "tiny 체크포인트는 무작위 가중치다. 레이아웃 해석과 비교 동작의 근거이지 수치 품질의 근거가 아니다."
+  ]
+}

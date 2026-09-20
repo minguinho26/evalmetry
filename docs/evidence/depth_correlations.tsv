@@ -1,0 +1,9 @@
+task	family	depth_measure	n_models	pearson_r
+arc_challenge	Qwen3 size ladder	settle_depth_median	4	0.8250539914324415
+arc_challenge	Qwen3 size ladder	settle_depth_step0	4	0.9004389177361594
+arc_challenge	all	settle_depth_median	7	0.7166823306138067
+arc_challenge	all	settle_depth_step0	7	0.8778931136495881
+mmlu_high_school_psychology	Qwen3 size ladder	settle_depth_median	4	-0.908999623764851
+mmlu_high_school_psychology	Qwen3 size ladder	settle_depth_step0	4	-0.908999623764851
+mmlu_high_school_psychology	all	settle_depth_median	7	-0.7982642615022092
+mmlu_high_school_psychology	all	settle_depth_step0	7	-0.7982642615022092

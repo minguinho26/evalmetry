@@ -13,6 +13,10 @@ Evalmetry evaluates Hugging Face language models with lm-eval and collects inter
 
 Model evaluation supports one process on one CUDA GPU. CPU execution is for test fixtures and verification tools. Reports and saved-data readers do not require a GPU.
 
+## Evidence and research example
+
+Read the [1.1.0 verification report](https://github.com/minguinho26/evalmetry/blob/release-1.1.0/docs/verification.md) and the [prediction-depth research showcase](https://github.com/minguinho26/evalmetry/blob/release-1.1.0/docs/showcase.md). Generation parity is established at the same actual batch size; generation is not batch-invariant.
+
 ## Install
 
 Install from PyPI in your Python environment:

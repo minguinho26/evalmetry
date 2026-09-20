@@ -1,0 +1,151 @@
+{
+  "date": "2026-09-19",
+  "what": "axes·extremes 수집의 비용. 기존 검수 기록(Qwen3-8B·arc_easy 8문서에서 평가 11배, 통계 집계 약 196초, 문서당 약 280 MB)의 원본 artifact와 실행 조건이 남아 있지 않아 대조가 불가능해서 다시 측정했다. 이 기록은 그 측정의 재현이 아니라 조건을 명시한 새 측정이다.",
+  "commit": "2c3d1264017e40cde87761462a23ad8701fbb333",
+  "git_dirty": false,
+  "environment": {
+    "gpu": "NVIDIA RTX A5000",
+    "gpu_total_memory_bytes": 25425608704,
+    "driver": "535.261.03",
+    "cuda": "12.8",
+    "torch": "2.8.0+cu128",
+    "transformers": "5.16.1",
+    "lm_eval": "0.4.13",
+    "python_env": "/home/modulabs/venvs/evalmetry-sweep",
+    "platform": "Linux-5.4.0-216-generic-x86_64-with-glibc2.35"
+  },
+  "workload": {
+    "model": "Qwen/Qwen3-8B",
+    "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "dtype": "bfloat16",
+    "device": "cuda",
+    "task": "arc_easy",
+    "num_fewshot": 0,
+    "documents": 8,
+    "batch_size": 8,
+    "seed": 1234,
+    "n_blocks": 36,
+    "modules_traced": "layers\\.\\d+\\.mlp$ (블록당 1개, 36개)",
+    "chunk_elements": 65536,
+    "warmup_rounds": 1,
+    "measured_rounds": 2,
+    "inputs_sha256": "d58a43f73037f28e881e3a4264ac67e57a34e5a76ef4862889cf1675b53d8d11",
+    "scoring_sha256": "c80e1081079e979c7fd9f776922c97ee3ebb2e4d1fa811bb6e7017303dbbb6f3",
+    "inputs_and_scoring_identical_across_all_12_runs": true
+  },
+  "commands": {
+    "with_axes_and_extremes": "scripts/measure_collection_cost.py --output /tmp/claude-0/-home-modulabs/d9730bc8-6267-4d6d-88c1-ab4b8496a7e7/scratchpad/axes-on --model Qwen/Qwen3-8B --dtype bfloat16 --device cuda --tasks arc_easy --limit 8 --batch-size 8 --modules layers\\.\\d+\\.mlp$ --axes both --axes-modules layers\\.\\d+\\.mlp$ --extremes 8 --extremes-modules layers\\.\\d+\\.mlp$ --chunks 65536 --warmup 1 --repeats 2",
+    "without_axes_and_extremes": "scripts/measure_collection_cost.py --output /tmp/claude-0/-home-modulabs/d9730bc8-6267-4d6d-88c1-ab4b8496a7e7/scratchpad/axes-off --model Qwen/Qwen3-8B --dtype bfloat16 --device cuda --tasks arc_easy --limit 8 --batch-size 8 --modules layers\\.\\d+\\.mlp$ --chunks 65536 --warmup 1 --repeats 2",
+    "note": "--output은 세션 임시 경로였다. run 디렉터리는 .gitignore 대상이고 남기지 않는다."
+  },
+  "configurations": {
+    "no_collection": {
+      "source": "axes-off / off"
+    },
+    "collection_plain": {
+      "source": "axes-off / on-chunk-65536",
+      "collection": {
+        "modules": "layers\\.\\d+\\.mlp$",
+        "axes": null,
+        "axes_modules": null,
+        "extremes": 0,
+        "extremes_modules": null,
+        "routing": null,
+        "debug_tail": 1000
+      }
+    },
+    "collection_axes_extremes": {
+      "source": "axes-on / on-chunk-65536",
+      "collection": {
+        "modules": "layers\\.\\d+\\.mlp$",
+        "axes": "both",
+        "axes_modules": "layers\\.\\d+\\.mlp$",
+        "extremes": 8,
+        "extremes_modules": "layers\\.\\d+\\.mlp$",
+        "routing": null,
+        "debug_tail": 1000
+      }
+    }
+  },
+  "measurements": {
+    "seconds_median": {
+      "no_collection": {
+        "evaluate": 9.954,
+        "statistics_close": null,
+        "end_to_end": 14.506
+      },
+      "collection_plain": {
+        "evaluate": 24.147,
+        "statistics_close": 0.236,
+        "end_to_end": 31.3
+      },
+      "collection_axes_extremes": {
+        "evaluate": 64.203,
+        "statistics_close": 131.473,
+        "end_to_end": 202.601
+      }
+    },
+    "statistics_bytes": {
+      "collection_plain": 660565,
+      "collection_axes_extremes": 2219998940
+    },
+    "statistics_rows_axes_extremes": {
+      "forwards": 4,
+      "observations": 2016,
+      "axis_stats": 8312040,
+      "extremes": 16128,
+      "routing": 0,
+      "samples": 576,
+      "dataset": 72,
+      "axis_samples": 2374776,
+      "axis_dataset": 297288,
+      "exclusions": 0
+    },
+    "statistics_rows_plain": {
+      "forwards": 4,
+      "observations": 2016,
+      "axis_stats": 0,
+      "extremes": 0,
+      "routing": 0,
+      "samples": 576,
+      "dataset": 72,
+      "axis_samples": 0,
+      "axis_dataset": 0,
+      "exclusions": 0
+    },
+    "cuda_peak_allocated_bytes": {
+      "no_collection": 16967307264,
+      "collection_plain": 16967307264,
+      "collection_axes_extremes": 16967307264
+    },
+    "spread_note": "측정 2라운드의 median·min·max는 각 cost.json의 summary에 있다. 라운드 간 편차는 1% 안쪽이다."
+  },
+  "derived": {
+    "evaluate_ratio_axes_over_no_collection": 6.45,
+    "evaluate_ratio_plain_over_no_collection": 2.43,
+    "evaluate_ratio_axes_over_plain": 2.66,
+    "statistics_close_ratio_axes_over_plain": 557.1,
+    "statistics_mb_per_document_axes": 277.5,
+    "statistics_mb_per_document_plain": 0.0826,
+    "statistics_bytes_ratio_axes_over_plain": 3360.8,
+    "marginal_of_axes_and_extremes_seconds": {
+      "evaluate": 40.06,
+      "statistics_close": 131.24
+    }
+  },
+  "findings": [
+    "문서당 통계 용량은 277.5 MB다. 기존 기록의 약 280 MB와 사실상 일치한다.",
+    "통계 집계(statistics_close)는 131.473초다. 기존 기록 약 196초와 같은 자리수이나 더 낮다.",
+    "평가 구간은 수집을 끈 9.954초 대비 6.45배다. 기존 기록 11배보다 낮다. 원본의 modules 선택·batch·K 값이 기록에 없어 차이의 원인은 특정할 수 없다.",
+    "axes·extremes만의 몫은 평가에서 +40.06초(2.66배), 집계에서 +131.24초(557.1배), 용량에서 3360.8배다. 비용은 압도적으로 axes·extremes에서 온다.",
+    "용량은 행 수에서 온다. axis_stats 8,312,040행 + axis_samples 2,374,776행이 전체의 대부분이고, axes 없는 수집은 observations 2,016행에 660 KB로 끝난다.",
+    "CUDA 피크 할당은 세 설정이 모두 같다(약 15.8 GiB, 사실상 가중치). axes·extremes는 VRAM이 아니라 시간과 디스크를 쓴다.",
+    "파일럿(2문서)에서는 문서당 337 MB였다. 문서 수에 비례하지 않는 집계 테이블(dataset, axis_dataset)이 섞여 있어 문서가 적을수록 문서당 값이 커진다. 문서당 수치는 문서 수와 함께 읽어야 한다."
+  ],
+  "not_verified": [
+    "기존 기록의 원본 조건(modules 선택, extremes K, batch, chunk)은 남아 있지 않다. 이 측정은 그 재현이 아니다.",
+    "measure_collection_cost.py의 후처리 chunk 불변성 비교는 axes를 켠 쪽에서 실행하지 못했다. verify_chunk_invariance.read_db가 두 DB의 모든 행을 파이썬 dict로 올리는데 이 run은 11,002,904행이고 실측 행당 1571 B라 DB 하나가 약 16.1 GiB, 두 개면 약 32.2 GiB가 되어 61 GiB 머신에서 OOM killer에 걸렸다. 8개 run 자체는 전부 ok로 끝났고 cost.json이 매 반복마다 다시 쓰여 기록은 온전하다. axes를 끈 쪽은 DB가 660 KB라 같은 비교가 통과했다.",
+    "측정 반복은 2회다. 가용 디스크 때문에 3회를 넣지 못했다(on-run 하나가 약 2.1 GiB이고 비교를 위해 run 디렉터리를 전부 남긴다).",
+    "arc_easy·8문서·mlp 모듈 한정이다. 다른 태스크·모듈 선택·문서 수로 외삽하지 않는다."
+  ]
+}

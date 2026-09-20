@@ -1,0 +1,142 @@
+{
+  "date": "2026-09-20",
+  "what": "배포 산출물(evalmetry 1.1.0 wheel)로 stock lm-eval 대비 점수 일치를 다시 확인한 기록. internal 레포에서 한 검증이 배포되는 코드에 대한 것인지를 따로 확인하기 위한 측정이다.",
+  "how": {
+    "why_not_the_repo": "scripts/verify_scores.py 는 레포 루트를 sys.path[0] 에 넣으므로 그냥 돌리면 항상 레포의 evalmetry 를 import한다. 배포 산출물을 검증하려면 다른 트리가 필요하다.",
+    "procedure": "evalmetry-1.1.0-py3-none-any.whl 을 풀어 나온 패키지를 임시 트리에 두고 그 옆에 scripts/ 를 복사해, 그 트리에서 parity_sweep.sh 를 실행했다. 따라서 import되는 evalmetry 는 wheel 안의 코드다.",
+    "wheel": "evalmetry-1.1.0-py3-none-any.whl (모듈 14개, 187,335 바이트)",
+    "tree_matches_public_repo": true
+  },
+  "commits": {
+    "internal": "4697735c35d8a2d5753048c6a10434beb1c9fab0",
+    "public": "c25dbcb086ad74dc668789bb272af840e4b6c26c",
+    "packages_byte_identical": true
+  },
+  "environment": {
+    "gpu": "NVIDIA RTX A5000 24GB",
+    "driver": "535.261.03",
+    "torch": "2.8.0+cu128",
+    "transformers": "5.16.1",
+    "lm_eval": "0.4.13",
+    "python_env": "/home/modulabs/venvs/evalmetry-sweep"
+  },
+  "workload": {
+    "models": [
+      "HuggingFaceTB/SmolLM2-135M",
+      "Qwen/Qwen3-0.6B"
+    ],
+    "tasks": {
+      "arc_easy": "전 데이터셋(2376문서)",
+      "gsm8k": "200문서"
+    },
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "note": "생성 태스크에서는 traced backend가 batch 1을 강제하므로 stock도 같은 batch로 내려 비교한다. 따라서 '같은 배치에서 동일'이지 '어떤 배치에서도 동일'이 아니다.",
+    "batch_size_requested": "auto",
+    "batch_size_that_ran": {
+      "arc_easy/HuggingFaceTB_SmolLM2-135M": "64",
+      "arc_easy/Qwen_Qwen3-0.6B": "64",
+      "gsm8k/HuggingFaceTB_SmolLM2-135M": "1",
+      "gsm8k/Qwen_Qwen3-0.6B": "1"
+    },
+    "batch_note": "auto가 실제로 무엇으로 잡혔는지를 기록한다. lm-eval이 모델마다 한 번씩 프로브하므로 파리티 실행은 두 번 찍고 두 값이 다를 수 있다. 이번 4조합에서는 stock과 traced가 모두 같은 값으로 잡혔다. 생성 태스크는 traced backend가 batch 1을 강제하므로 프로브 결과와 무관하게 1이다."
+  },
+  "verdicts": {
+    "arc_easy/HuggingFaceTB_SmolLM2-135M": "PASS 102s",
+    "arc_easy/Qwen_Qwen3-0.6B": "PASS 143s",
+    "gsm8k/HuggingFaceTB_SmolLM2-135M": "PASS 735s",
+    "gsm8k/Qwen_Qwen3-0.6B": "PASS 824s"
+  },
+  "identity_lines": [
+    {
+      "combination": "arc_easy/HuggingFaceTB_SmolLM2-135M",
+      "line": "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -26.000000 vs -26.000000)"
+    },
+    {
+      "combination": "arc_easy/Qwen_Qwen3-0.6B",
+      "line": "log probabilities: 9501 requests, 9501 bit-identical, max abs diff 0.000e+00 (arc_easy doc 0 choice 0: -26.750000 vs -26.750000)"
+    },
+    {
+      "combination": "gsm8k/HuggingFaceTB_SmolLM2-135M",
+      "line": "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    },
+    {
+      "combination": "gsm8k/Qwen_Qwen3-0.6B",
+      "line": "generations: 400 (document, filter) requests, 400 identical, 0 differing (0 of them in the raw generation)"
+    }
+  ],
+  "scores_and_cross_check": [
+    {
+      "model": "HuggingFaceTB/SmolLM2-135M",
+      "task": "arc_easy",
+      "metric": "acc,none",
+      "documents": "2376.0",
+      "value": "0.6435185185185185",
+      "matches_internal_run": true
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM2-135M",
+      "task": "arc_easy",
+      "metric": "acc_norm,none",
+      "documents": "2376.0",
+      "value": "0.5858585858585859",
+      "matches_internal_run": true
+    },
+    {
+      "model": "Qwen/Qwen3-0.6B",
+      "task": "arc_easy",
+      "metric": "acc,none",
+      "documents": "2376.0",
+      "value": "0.6052188552188552",
+      "matches_internal_run": true
+    },
+    {
+      "model": "Qwen/Qwen3-0.6B",
+      "task": "arc_easy",
+      "metric": "acc_norm,none",
+      "documents": "2376.0",
+      "value": "0.5563973063973064",
+      "matches_internal_run": true
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM2-135M",
+      "task": "gsm8k",
+      "metric": "exact_match,flexible-extract",
+      "documents": "200.0",
+      "value": "0.005",
+      "matches_internal_run": true
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM2-135M",
+      "task": "gsm8k",
+      "metric": "exact_match,strict-match",
+      "documents": "200.0",
+      "value": "0.005",
+      "matches_internal_run": true
+    },
+    {
+      "model": "Qwen/Qwen3-0.6B",
+      "task": "gsm8k",
+      "metric": "exact_match,flexible-extract",
+      "documents": "200.0",
+      "value": "0.415",
+      "matches_internal_run": true
+    },
+    {
+      "model": "Qwen/Qwen3-0.6B",
+      "task": "gsm8k",
+      "metric": "exact_match,strict-match",
+      "documents": "200.0",
+      "value": "0.425",
+      "matches_internal_run": true
+    }
+  ],
+  "findings": [
+    "4조합 전원 PASS. arc_easy는 9501요청이 전부 bit-identical(max abs diff 0.000e+00), gsm8k는 400 (document, filter) 요청의 생성 문자열이 전부 동일하다.",
+    "같은 조건으로 돌린 internal 실행의 점수와 자리 수까지 일치한다. 배포 산출물이 검증 레포의 결과를 재현한다는 뜻이다."
+  ],
+  "not_verified": [
+    "2모델 2태스크로 좁힌 확인이다. 10아키텍처 × 5태스크 전체는 internal 패키지에서 수행했고, 두 패키지가 바이트 동일하다는 사실로 연결된다.",
+    "깨끗한 가상환경에 wheel을 설치해 의존성까지 해소하는 검증은 하지 않았다. wheel 구성과 메타데이터(Requires-Dist, entry point)는 확인했다."
+  ]
+}

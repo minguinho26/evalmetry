@@ -1,0 +1,89 @@
+{
+  "date": "2026-09-19",
+  "what": "Cost of --debug-numeric relative to a plain --debug trace, re-measured because the figures carried in REVIEW_GPU (11.6x, trace 254 MB) have no surviving artifact or recorded conditions.",
+  "commit": "1760186cdbb13f2f6d64c01e8021c0c304f610a2",
+  "environment": {
+    "gpu": "NVIDIA RTX A5000 24GB",
+    "driver": "535.261.03",
+    "torch": "2.8.0+cu128",
+    "transformers": "5.16.1",
+    "lm_eval": "0.4.13",
+    "python_env": "/home/modulabs/venvs/evalmetry-sweep"
+  },
+  "workload": {
+    "model": "Qwen/Qwen3-0.6B",
+    "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "dtype": "bfloat16",
+    "device": "cuda",
+    "task": "arc_easy",
+    "num_fewshot": 0,
+    "batch_size": 1,
+    "n_blocks": 28,
+    "modules_traced": 427,
+    "first_pass": "evalmetry run --model-args pretrained=Qwen/Qwen3-0.6B,dtype=bfloat16,device=cuda --tasks arc_easy --num-fewshot 0 --limit <eval_limit> --batch-size 1 --output <dir>",
+    "second_pass": "evalmetry collect-research-data <dir> --save-hidden --collect-limit <collect_limit> [--debug] [--debug-numeric]",
+    "variants": {
+      "plain": "no tracing",
+      "debug": "--debug",
+      "numeric": "--debug --debug-numeric"
+    }
+  },
+  "measurements": [
+    {
+      "eval_limit": 8,
+      "collect_limit": 2,
+      "plain_s": 7,
+      "debug_s": 8,
+      "numeric_s": 17,
+      "debug_trace_kb": 4412,
+      "numeric_trace_kb": 8748,
+      "trace_size_ratio_numeric_over_debug": 1.983,
+      "wall_ratio_numeric_over_debug": 2.12,
+      "marginal_tracing_s_debug": 1,
+      "marginal_tracing_s_numeric": 10,
+      "marginal_ratio_numeric_over_debug": 10.0,
+      "numeric_trace_mb_per_collected_doc": 4.27
+    },
+    {
+      "eval_limit": 64,
+      "collect_limit": 8,
+      "plain_s": 8,
+      "debug_s": 10,
+      "numeric_s": 53,
+      "debug_trace_kb": 17732,
+      "numeric_trace_kb": 35108,
+      "trace_size_ratio_numeric_over_debug": 1.98,
+      "wall_ratio_numeric_over_debug": 5.3,
+      "marginal_tracing_s_debug": 2,
+      "marginal_tracing_s_numeric": 45,
+      "marginal_ratio_numeric_over_debug": 22.5,
+      "numeric_trace_mb_per_collected_doc": 4.29
+    },
+    {
+      "eval_limit": 64,
+      "collect_limit": 32,
+      "plain_s": 11,
+      "debug_s": 20,
+      "numeric_s": 145,
+      "debug_trace_kb": 60116,
+      "numeric_trace_kb": 118916,
+      "trace_size_ratio_numeric_over_debug": 1.978,
+      "wall_ratio_numeric_over_debug": 7.25,
+      "marginal_tracing_s_debug": 9,
+      "marginal_tracing_s_numeric": 134,
+      "marginal_ratio_numeric_over_debug": 14.9,
+      "numeric_trace_mb_per_collected_doc": 3.63
+    }
+  ],
+  "findings": [
+    "Trace size ratio is stable at 1.98x across all three scales: --debug-numeric roughly doubles the trace, it does not multiply it by ten.",
+    "Wall-clock ratio over --debug is not a single number. It rises with scale (2.1x, 5.3x, 7.2x) because a fixed ~7-11 s of model load and untraced collection is amortised.",
+    "With that fixed cost subtracted, the tracing-only ratio is 10x / 22.5x / 14.9x. These are small absolute differences (1 s vs 10 s, 2 s vs 45 s, 9 s vs 134 s) and are noisy, but they bracket the 11.6x that REVIEW_GPU carried, so that figure is plausible as a tracing-only ratio.",
+    "Trace volume is 3.63 MB per collected document with numeric on at this model size. The 254 MB in the old record corresponds to roughly 70 collected documents for a 0.6B model, or fewer for a larger one. The original condition was never recorded, so it cannot be pinned down.",
+    "Cost is governed by --collect-limit, not --limit: the trace is written during the collection pass only. Evaluating 64 documents and collecting 8 costs the same trace as evaluating 8 and collecting 8."
+  ],
+  "not_verified": [
+    "The original 11.6x / 254 MB conditions (model, task, document count) remain unknown; this is a fresh measurement under stated conditions, not a reproduction of that one.",
+    "axes/extremes cost (Qwen3-8B, arc_easy, 8 documents: 11x evaluation, ~196 s aggregation, ~280 MB per document) was not re-measured: Qwen3-8B needs ~16.4 GB of download against 19 GB of free disk."
+  ]
+}

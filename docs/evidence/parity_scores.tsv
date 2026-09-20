@@ -1,0 +1,170 @@
+model	task	config	metric	stock	traced	parity
+HuggingFaceTB/SmolLM2-135M	arc_easy	hf-traced	acc,none	0.6435185185185185	0.6435185185185185	EQUAL
+HuggingFaceTB/SmolLM2-135M	arc_easy	hf-traced	acc_norm,none	0.5858585858585859	0.5858585858585859	EQUAL
+HuggingFaceTB/SmolLM2-135M	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	hellaswag	hf-traced	acc,none	0.3552081258713404	0.3552081258713404	EQUAL
+HuggingFaceTB/SmolLM2-135M	hellaswag	hf-traced	acc_norm,none	0.43089026090420235	0.43089026090420235	EQUAL
+HuggingFaceTB/SmolLM2-135M	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	mmlu_high_school_psychology	hf-traced	acc,none	0.20917431192660552	0.20917431192660552	EQUAL
+HuggingFaceTB/SmolLM2-135M	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	arc_easy	hf-traced	acc,none	0.57	0.57	EQUAL
+HuggingFaceTB/SmolLM2-135M	arc_easy	hf-traced	acc_norm,none	0.56	0.56	EQUAL
+HuggingFaceTB/SmolLM2-135M	arc_easy	hf-traced	sample_len	200.0	200.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	arc_easy	hf-traced + collection	acc,none	0.57	0.57	EQUAL
+HuggingFaceTB/SmolLM2-135M	arc_easy	hf-traced + collection	acc_norm,none	0.56	0.56	EQUAL
+HuggingFaceTB/SmolLM2-135M	arc_easy	hf-traced + collection	sample_len	200.0	200.0	EQUAL
+EleutherAI/pythia-160m	arc_easy	hf-traced	acc,none	0.41	0.41	EQUAL
+EleutherAI/pythia-160m	arc_easy	hf-traced	acc_norm,none	0.43	0.43	EQUAL
+EleutherAI/pythia-160m	arc_easy	hf-traced	sample_len	200.0	200.0	EQUAL
+EleutherAI/pythia-160m	arc_easy	hf-traced + collection	acc,none	0.41	0.41	EQUAL
+EleutherAI/pythia-160m	arc_easy	hf-traced + collection	acc_norm,none	0.43	0.43	EQUAL
+EleutherAI/pythia-160m	arc_easy	hf-traced + collection	sample_len	200.0	200.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	arc_easy	hf-traced	acc,none	0.76	0.76	EQUAL
+microsoft/Phi-3-mini-4k-instruct	arc_easy	hf-traced	acc_norm,none	0.79	0.79	EQUAL
+microsoft/Phi-3-mini-4k-instruct	arc_easy	hf-traced	sample_len	200.0	200.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	arc_easy	hf-traced + collection	acc,none	0.76	0.76	EQUAL
+microsoft/Phi-3-mini-4k-instruct	arc_easy	hf-traced + collection	acc_norm,none	0.79	0.79	EQUAL
+microsoft/Phi-3-mini-4k-instruct	arc_easy	hf-traced + collection	sample_len	200.0	200.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced	exact_match,flexible-extract	0.0	0.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced	exact_match,strict-match	0.0	0.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced	sample_len	10.0	10.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced	exact_match,flexible-extract	0.0	0.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced	exact_match,strict-match	0.0	0.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced	sample_len	4.0	4.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced + collection	exact_match,flexible-extract	0.0	0.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced + collection	exact_match,strict-match	0.0	0.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced + collection	sample_len	4.0	4.0	EQUAL
+EleutherAI/pythia-160m	gsm8k	hf-traced	exact_match,flexible-extract	0.0	0.0	EQUAL
+EleutherAI/pythia-160m	gsm8k	hf-traced	exact_match,strict-match	0.0	0.0	EQUAL
+EleutherAI/pythia-160m	gsm8k	hf-traced	sample_len	4.0	4.0	EQUAL
+EleutherAI/pythia-160m	gsm8k	hf-traced + collection	exact_match,flexible-extract	0.0	0.0	EQUAL
+EleutherAI/pythia-160m	gsm8k	hf-traced + collection	exact_match,strict-match	0.0	0.0	EQUAL
+EleutherAI/pythia-160m	gsm8k	hf-traced + collection	sample_len	4.0	4.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	gsm8k	hf-traced	exact_match,flexible-extract	1.0	1.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	gsm8k	hf-traced	exact_match,strict-match	1.0	1.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	gsm8k	hf-traced	sample_len	4.0	4.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	gsm8k	hf-traced + collection	exact_match,flexible-extract	1.0	1.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	gsm8k	hf-traced + collection	exact_match,strict-match	1.0	1.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	gsm8k	hf-traced + collection	sample_len	4.0	4.0	EQUAL
+Qwen/Qwen2.5-0.5B	arc_easy	hf-traced	acc,none	0.6468855218855218	0.6468855218855218	EQUAL
+Qwen/Qwen2.5-0.5B	arc_easy	hf-traced	acc_norm,none	0.5854377104377104	0.5854377104377104	EQUAL
+Qwen/Qwen2.5-0.5B	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+Qwen/Qwen2.5-0.5B	hellaswag	hf-traced	acc,none	0.4062935670185222	0.4062935670185222	EQUAL
+Qwen/Qwen2.5-0.5B	hellaswag	hf-traced	acc_norm,none	0.5219079864568811	0.5219079864568811	EQUAL
+Qwen/Qwen2.5-0.5B	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+Qwen/Qwen2.5-0.5B	mmlu_high_school_psychology	hf-traced	acc,none	0.6623853211009174	0.6623853211009174	EQUAL
+Qwen/Qwen2.5-0.5B	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+Qwen/Qwen3-0.6B	arc_easy	hf-traced	acc,none	0.6052188552188552	0.6052188552188552	EQUAL
+Qwen/Qwen3-0.6B	arc_easy	hf-traced	acc_norm,none	0.5563973063973064	0.5563973063973064	EQUAL
+Qwen/Qwen3-0.6B	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+Qwen/Qwen3-0.6B	hellaswag	hf-traced	acc,none	0.374726150169289	0.374726150169289	EQUAL
+Qwen/Qwen3-0.6B	hellaswag	hf-traced	acc_norm,none	0.47321250746863175	0.47321250746863175	EQUAL
+Qwen/Qwen3-0.6B	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+Qwen/Qwen3-0.6B	mmlu_high_school_psychology	hf-traced	acc,none	0.5577981651376147	0.5577981651376147	EQUAL
+Qwen/Qwen3-0.6B	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+EleutherAI/pythia-160m	arc_easy	hf-traced	acc,none	0.3707912457912458	0.3707912457912458	EQUAL
+EleutherAI/pythia-160m	arc_easy	hf-traced	acc_norm,none	0.3653198653198653	0.3653198653198653	EQUAL
+EleutherAI/pythia-160m	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+EleutherAI/pythia-160m	hellaswag	hf-traced	acc,none	0.2830113523202549	0.2830113523202549	EQUAL
+EleutherAI/pythia-160m	hellaswag	hf-traced	acc_norm,none	0.3042222664807807	0.3042222664807807	EQUAL
+EleutherAI/pythia-160m	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+EleutherAI/pythia-160m	mmlu_high_school_psychology	hf-traced	acc,none	0.1926605504587156	0.1926605504587156	EQUAL
+EleutherAI/pythia-160m	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+allenai/OLMo-2-0425-1B	arc_easy	hf-traced	acc,none	0.7272727272727273	0.7272727272727273	EQUAL
+allenai/OLMo-2-0425-1B	arc_easy	hf-traced	acc_norm,none	0.7373737373737373	0.7373737373737373	EQUAL
+allenai/OLMo-2-0425-1B	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+allenai/OLMo-2-0425-1B	hellaswag	hf-traced	acc,none	0.5084644493128859	0.5084644493128859	EQUAL
+allenai/OLMo-2-0425-1B	hellaswag	hf-traced	acc_norm,none	0.6832304321848237	0.6832304321848237	EQUAL
+allenai/OLMo-2-0425-1B	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+allenai/OLMo-2-0425-1B	mmlu_high_school_psychology	hf-traced	acc,none	0.43119266055045874	0.43119266055045874	EQUAL
+allenai/OLMo-2-0425-1B	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+HuggingFaceTB/SmolLM3-3B	arc_easy	hf-traced	acc,none	0.7891414141414141	0.7891414141414141	EQUAL
+HuggingFaceTB/SmolLM3-3B	arc_easy	hf-traced	acc_norm,none	0.7723063973063973	0.7723063973063973	EQUAL
+HuggingFaceTB/SmolLM3-3B	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+HuggingFaceTB/SmolLM3-3B	hellaswag	hf-traced	acc,none	0.5651264688309102	0.5651264688309102	EQUAL
+HuggingFaceTB/SmolLM3-3B	hellaswag	hf-traced	acc_norm,none	0.7582154949213304	0.7582154949213304	EQUAL
+HuggingFaceTB/SmolLM3-3B	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+HuggingFaceTB/SmolLM3-3B	mmlu_high_school_psychology	hf-traced	acc,none	0.7908256880733945	0.7908256880733945	EQUAL
+HuggingFaceTB/SmolLM3-3B	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+unsloth/gemma-2-2b	arc_easy	hf-traced	acc,none	0.8013468013468014	0.8013468013468014	EQUAL
+unsloth/gemma-2-2b	arc_easy	hf-traced	acc_norm,none	0.8009259259259259	0.8009259259259259	EQUAL
+unsloth/gemma-2-2b	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+unsloth/gemma-2-2b	hellaswag	hf-traced	acc,none	0.5500896235809599	0.5500896235809599	EQUAL
+unsloth/gemma-2-2b	hellaswag	hf-traced	acc_norm,none	0.7303326030671181	0.7303326030671181	EQUAL
+unsloth/gemma-2-2b	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+unsloth/gemma-2-2b	mmlu_high_school_psychology	hf-traced	acc,none	0.7045871559633028	0.7045871559633028	EQUAL
+unsloth/gemma-2-2b	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	arc_easy	hf-traced	acc,none	0.8164983164983165	0.8164983164983165	EQUAL
+microsoft/Phi-3-mini-4k-instruct	arc_easy	hf-traced	acc_norm,none	0.7866161616161617	0.7866161616161617	EQUAL
+microsoft/Phi-3-mini-4k-instruct	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	hellaswag	hf-traced	acc,none	0.5902210714997013	0.5902210714997013	EQUAL
+microsoft/Phi-3-mini-4k-instruct	hellaswag	hf-traced	acc_norm,none	0.7749452300338578	0.7749452300338578	EQUAL
+microsoft/Phi-3-mini-4k-instruct	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	mmlu_high_school_psychology	hf-traced	acc,none	0.8935779816513761	0.8935779816513761	EQUAL
+microsoft/Phi-3-mini-4k-instruct	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	arc_easy	hf-traced	acc,none	0.2622053872053872	0.2622053872053872	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	arc_easy	hf-traced	acc_norm,none	0.2617845117845118	0.2617845117845118	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	hellaswag	hf-traced	acc,none	0.2528380800637323	0.2528380800637323	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	hellaswag	hf-traced	acc_norm,none	0.2566221868153754	0.2566221868153754	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	mmlu_high_school_psychology	hf-traced	acc,none	0.22385321100917432	0.22385321100917432	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	arc_easy	hf-traced	acc,none	0.2601010101010101	0.2601010101010101	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	arc_easy	hf-traced	acc_norm,none	0.26304713804713803	0.26304713804713803	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	arc_easy	hf-traced	sample_len	2376.0	2376.0	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	hellaswag	hf-traced	acc,none	0.25632344154550885	0.25632344154550885	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	hellaswag	hf-traced	acc_norm,none	0.2566221868153754	0.2566221868153754	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	hellaswag	hf-traced	sample_len	10042.0	10042.0	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	mmlu_high_school_psychology	hf-traced	acc,none	0.1926605504587156	0.1926605504587156	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	mmlu_high_school_psychology	hf-traced	sample_len	545.0	545.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced	exact_match,flexible-extract	0.005	0.005	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced	exact_match,strict-match	0.005	0.005	EQUAL
+HuggingFaceTB/SmolLM2-135M	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+HuggingFaceTB/SmolLM2-135M	triviaqa	hf-traced	exact_match,remove_whitespace	0.03	0.03	EQUAL
+HuggingFaceTB/SmolLM2-135M	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
+Qwen/Qwen2.5-0.5B	gsm8k	hf-traced	exact_match,flexible-extract	0.31	0.31	EQUAL
+Qwen/Qwen2.5-0.5B	gsm8k	hf-traced	exact_match,strict-match	0.305	0.305	EQUAL
+Qwen/Qwen2.5-0.5B	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+Qwen/Qwen2.5-0.5B	triviaqa	hf-traced	exact_match,remove_whitespace	0.085	0.085	EQUAL
+Qwen/Qwen2.5-0.5B	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
+Qwen/Qwen3-0.6B	gsm8k	hf-traced	exact_match,flexible-extract	0.415	0.415	EQUAL
+Qwen/Qwen3-0.6B	gsm8k	hf-traced	exact_match,strict-match	0.425	0.425	EQUAL
+Qwen/Qwen3-0.6B	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+Qwen/Qwen3-0.6B	triviaqa	hf-traced	exact_match,remove_whitespace	0.02	0.02	EQUAL
+Qwen/Qwen3-0.6B	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
+EleutherAI/pythia-160m	gsm8k	hf-traced	exact_match,flexible-extract	0.0	0.0	EQUAL
+EleutherAI/pythia-160m	gsm8k	hf-traced	exact_match,strict-match	0.0	0.0	EQUAL
+EleutherAI/pythia-160m	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+EleutherAI/pythia-160m	triviaqa	hf-traced	exact_match,remove_whitespace	0.0	0.0	EQUAL
+EleutherAI/pythia-160m	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
+allenai/OLMo-2-0425-1B	gsm8k	hf-traced	exact_match,flexible-extract	0.28	0.28	EQUAL
+allenai/OLMo-2-0425-1B	gsm8k	hf-traced	exact_match,strict-match	0.28	0.28	EQUAL
+allenai/OLMo-2-0425-1B	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+allenai/OLMo-2-0425-1B	triviaqa	hf-traced	exact_match,remove_whitespace	0.245	0.245	EQUAL
+allenai/OLMo-2-0425-1B	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
+HuggingFaceTB/SmolLM3-3B	gsm8k	hf-traced	exact_match,flexible-extract	0.675	0.675	EQUAL
+HuggingFaceTB/SmolLM3-3B	gsm8k	hf-traced	exact_match,strict-match	0.3	0.3	EQUAL
+HuggingFaceTB/SmolLM3-3B	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+HuggingFaceTB/SmolLM3-3B	triviaqa	hf-traced	exact_match,remove_whitespace	0.17	0.17	EQUAL
+HuggingFaceTB/SmolLM3-3B	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
+unsloth/gemma-2-2b	gsm8k	hf-traced	exact_match,flexible-extract	0.235	0.235	EQUAL
+unsloth/gemma-2-2b	gsm8k	hf-traced	exact_match,strict-match	0.235	0.235	EQUAL
+unsloth/gemma-2-2b	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+unsloth/gemma-2-2b	triviaqa	hf-traced	exact_match,remove_whitespace	0.365	0.365	EQUAL
+unsloth/gemma-2-2b	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	gsm8k	hf-traced	exact_match,flexible-extract	0.81	0.81	EQUAL
+microsoft/Phi-3-mini-4k-instruct	gsm8k	hf-traced	exact_match,strict-match	0.805	0.805	EQUAL
+microsoft/Phi-3-mini-4k-instruct	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+microsoft/Phi-3-mini-4k-instruct	triviaqa	hf-traced	exact_match,remove_whitespace	0.04	0.04	EQUAL
+microsoft/Phi-3-mini-4k-instruct	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	gsm8k	hf-traced	exact_match,flexible-extract	0.005	0.005	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	gsm8k	hf-traced	exact_match,strict-match	0.0	0.0	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	triviaqa	hf-traced	exact_match,remove_whitespace	0.0	0.0	EQUAL
+hf-internal-testing/tiny-random-MistralForCausalLM	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	gsm8k	hf-traced	exact_match,flexible-extract	0.0	0.0	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	gsm8k	hf-traced	exact_match,strict-match	0.0	0.0	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	gsm8k	hf-traced	sample_len	200.0	200.0	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	triviaqa	hf-traced	exact_match,remove_whitespace	0.0	0.0	EQUAL
+hf-internal-testing/tiny-random-CohereForCausalLM	triviaqa	hf-traced	sample_len	200.0	200.0	EQUAL
