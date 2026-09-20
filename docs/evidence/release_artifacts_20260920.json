@@ -135,7 +135,7 @@
     "setuptools_isolated": "84.0.0"
   },
   "python_support_note": "Metadata declares >=3.10; this installation check ran Python 3.13.9, not a multi-Python matrix.",
-  "upload_status": "not yet uploaded",
+  "upload_status": "uploaded and verified",
   "installed_requirements": [
     "absl-py==2.5.0",
     "accelerate==1.15.0",
@@ -247,5 +247,29 @@
     "word2number==1.1",
     "xxhash==4.0.1",
     "yarl==1.25.1"
-  ]
+  ],
+  "pypi": {
+    "version": "1.1.0",
+    "api": "https://pypi.org/pypi/evalmetry/json",
+    "verified_at": "2026-09-20T09:25:54.817058+00:00",
+    "files": [
+      {
+        "filename": "evalmetry-1.1.0-py3-none-any.whl",
+        "sha256": "d1af6bebb15e0631f21b39368a6e1af4a4694140c133ea2368c2fe5c660a1ed4",
+        "size": 187460,
+        "url": "https://files.pythonhosted.org/packages/17/d9/6f52a8d774bd0def7a7464a88d50020291495538871dbab6c661aee86bfb/evalmetry-1.1.0-py3-none-any.whl",
+        "upload_time": "2026-09-20T09:24:41.091032Z",
+        "download_hash_matches": true
+      },
+      {
+        "filename": "evalmetry-1.1.0.tar.gz",
+        "sha256": "e6e9aab5e137ddc33792b9eb8d82b064e2631a13873dab9c1cbcffaea5f46183",
+        "size": 180635,
+        "url": "https://files.pythonhosted.org/packages/76/53/994b48cf216aa57afad70257e6b393ad865a39f1cb0a2f9ef5459afe7956/evalmetry-1.1.0.tar.gz",
+        "upload_time": "2026-09-20T09:24:43.084296Z",
+        "download_hash_matches": true
+      }
+    ],
+    "note": "Version-specific API initially returned 404 after successful upload; project API confirms releases[1.1.0] and downloaded bytes."
+  }
 }
