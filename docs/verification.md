@@ -119,3 +119,23 @@ Neither CPU installation checks nor the [historical research showcase](showcase.
 substitute for GPU numerical evidence. Future verification should preserve full
 revision manifests and compare actual execution batches whenever dependencies,
 hardware or scoring paths change.
+
+## Final distribution checks (September 20, 2026)
+
+Both upload candidates passed `twine check --strict`. All 14 package modules
+match the public source; license, version, Python requirement, dependencies and
+CLI entry point were inspected. A wheel rebuilt from the sdist has byte-identical
+uncompressed contents, including metadata and RECORD. The original upload files
+were retained unchanged.
+
+The original wheel was installed normally with dependencies into a fresh venv
+without system site-packages. From outside the repositories, import and CLI help
+passed, `pip check` found no broken requirements, and an offline locally generated
+Llama model completed four choice-loglikelihood requests and one generation
+request, matching stock and writing 18 signal rows. Python 3.13.9 and torch 2.8.0
+were used. This is installation/API coverage, not a GPU or all-Python-version test.
+
+The [artifact record](evidence/release_artifacts_20260920.json) contains the exact
+upload paths, SHA-256 values, file inventories, metadata and installed versions.
+The documentation is on the repository branch; the distributions intentionally
+contain the package and required packaging resources, not verification scripts.

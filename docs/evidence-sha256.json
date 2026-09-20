@@ -11,5 +11,6 @@
   "evidence/release_parity_20260920.json": "28721078ea33d3d58b0982b51f6248a06d06c85cbfa01f1a687c38b9cf80bf88",
   "evidence/debug_numeric_cost_20260919.json": "583e5eec83bef472a43694264bdc4520c08188d13c5e3168cf2d4d7ad4c1bde0",
   "evidence/prediction_depth.parquet": "6bad5a40d9fe2b470cb8e3d167ed51ee133ce9714d4a334b31b97dd17b9819cd",
-  "evidence/depth_correlations.tsv": "f3ec357552cbbdd6394bd8cf165d90c910e879ed234fb325fff964383200dbf2"
+  "evidence/depth_correlations.tsv": "f3ec357552cbbdd6394bd8cf165d90c910e879ed234fb325fff964383200dbf2",
+  "evidence/release_artifacts_20260920.json": "4599fd0e2a1e622b4f738f4559796b48b7a86b5afa749a005a83346da27d675e"
 }
