@@ -1,5 +1,15 @@
 # Releases and publishing
 
+## 1.1.1 (September 20, 2026)
+
+Published on [PyPI](https://pypi.org/project/evalmetry/1.1.1/) and released on [GitHub](https://github.com/minguinho26/evalmetry/releases/tag/v1.1.1).
+
+This release changes documentation and the recorded tool version. No evaluation code changed, so the 1.1.0 verification evidence applies unchanged and no new GPU verification was run for 1.1.1.
+
+- The README evidence links pointed at the `release-1.1.0` branch, which no longer exists, so they returned 404. They now point at the version tag and no longer depend on a branch. The 1.1.0 page on PyPI keeps the broken links, because the description of an uploaded release cannot be edited.
+- Run manifests record tool version 1.1.1, matching the distribution version.
+- The README, verification report, research showcase and these notes were rewritten with one paragraph per line and plainer sentences. Their numbers, tables, links and code examples are unchanged.
+
 ## 1.1.0 (September 20, 2026)
 
 Published on [PyPI](https://pypi.org/project/evalmetry/1.1.0/) and released on [GitHub](https://github.com/minguinho26/evalmetry/releases/tag/v1.1.0). The verified wheel and sdist were uploaded directly with Twine, so the `Publish to PyPI` workflow was disabled while the 1.1.0 GitHub Release was published and re-enabled immediately afterwards. That kept the release trigger from rebuilding and re-uploading this already-published version.

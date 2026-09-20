@@ -15,7 +15,7 @@ Model evaluation supports one process on one CUDA GPU. CPU execution is for test
 
 ## Evidence and research example
 
-Read the [1.1.0 verification report](https://github.com/minguinho26/evalmetry/blob/v1.1.0/docs/verification.md) and the [prediction-depth research showcase](https://github.com/minguinho26/evalmetry/blob/v1.1.0/docs/showcase.md). Generation parity is established at the same actual batch size. Generation is not batch-invariant.
+Read the [1.1.0 verification report](https://github.com/minguinho26/evalmetry/blob/v1.1.1/docs/verification.md) and the [prediction-depth research showcase](https://github.com/minguinho26/evalmetry/blob/v1.1.1/docs/showcase.md). Generation parity is established at the same actual batch size. Generation is not batch-invariant.
 
 ## Install
 
@@ -27,7 +27,7 @@ pip install evalmetry
 
 Evalmetry requires Python >=3.10. Use a compatible CUDA build of PyTorch. The Python import and CLI are both `evalmetry`.
 
-To install this release explicitly, use `pip install evalmetry==1.1.0`. For development, clone this repository and run `python -m pip install -e .`.
+To install this release explicitly, use `pip install evalmetry==1.1.1`. For development, clone this repository and run `python -m pip install -e .`.
 
 ## Quick start
 

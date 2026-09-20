@@ -36,7 +36,7 @@ from .debug import TRACE_BUFFER_EVENTS
 from .storage import FIXED_SETTINGS, SAMPLING_SEED, SCHEMA_VERSION
 
 #: Version of this tool, recorded in every manifest.
-TOOL_VERSION = "1.1.0"
+TOOL_VERSION = "1.1.1"
 
 #: Default number of documents collected per correctness group.
 DEFAULT_COLLECT_LIMIT = 500
