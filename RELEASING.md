@@ -1,6 +1,6 @@
 # Releases and publishing
 
-## 1.1.0 — September 20, 2026
+## 1.1.0 (September 20, 2026)
 
 Published on [PyPI](https://pypi.org/project/evalmetry/1.1.0/) and released on [GitHub](https://github.com/minguinho26/evalmetry/releases/tag/v1.1.0). The verified wheel and sdist were uploaded directly with Twine, so the `Publish to PyPI` workflow was disabled while the 1.1.0 GitHub Release was published and re-enabled immediately afterwards. That kept the release trigger from rebuilding and re-uploading this already-published version.
 
@@ -22,12 +22,12 @@ Python callers must likewise pass `num_fewshot`, for example `RunConfig(model_ar
 - Run manifests now record tool version 1.1.0, matching the distribution version. Version 1.0.0 incorrectly recorded tool version 0.1.0.
 - `module-stats --pass collection` now explains which passes exist and how to create a missing collection pass.
 - A package docstring no longer refers to development-only review files.
-- Run manifests record phase timings for model loading, evaluation, collection and end-to-end execution; `collect-research-data` records collection timings.
+- Run manifests record phase timings for model loading, evaluation, collection and end-to-end execution. `collect-research-data` records collection timings.
 - The repository includes a [verification report](docs/verification.md) and a [prediction-depth research showcase](docs/showcase.md) with supporting data.
 
 ### Verification and published artifacts
 
-- Ten checkpoints across five tasks passed all 50 stock-versus-traced comparisons. Three multiple-choice tasks used their full datasets with bit-identical request log probabilities; two generation tasks used 200 documents each.
+- Ten checkpoints across five tasks passed all 50 stock-versus-traced comparisons. Three multiple-choice tasks used their full datasets with bit-identical request log probabilities. Two generation tasks used 200 documents each.
 - Six additional comparisons exercised optional heavy collection across three architectures and two tasks.
 - Generation equality is established **at the same actual batch size of 1**. A separate 24-run experiment confirmed all twelve matched-batch comparisons. Changing stock batching can change outputs and scores: Qwen3 GSM8K changed from 46.875% at batch 1 to 43.75% at batch 8 on 32 documents.
 - Final wheel and sdist passed strict Twine validation. Rebuilding the sdist produced identical uncompressed wheel contents. Independent installation, dependency, import, CLI and offline local CPU scoring/collection checks passed. These installation checks are separate from the retained GPU parity evidence.
@@ -58,4 +58,4 @@ If the project already exists, add the publisher in its Publishing settings. No 
 3. Publish a GitHub Release for that tag. This starts the publishing workflow.
 4. Confirm the workflow succeeded and install the version from PyPI in a fresh environment.
 
-If the first run fails because PyPI setup is incomplete, finish the setup and rerun the failed job. The workflow can also be started manually with an existing release tag. PyPI does not allow replacing files in an uploaded release; publish a new version for package changes.
+If the first run fails because PyPI setup is incomplete, finish the setup and rerun the failed job. The workflow can also be started manually with an existing release tag. PyPI does not allow replacing files in an uploaded release. Package changes require a new version.

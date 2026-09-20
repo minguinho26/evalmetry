@@ -15,11 +15,11 @@ Model evaluation supports one process on one CUDA GPU. CPU execution is for test
 
 ## Evidence and research example
 
-Read the [1.1.0 verification report](https://github.com/minguinho26/evalmetry/blob/release-1.1.0/docs/verification.md) and the [prediction-depth research showcase](https://github.com/minguinho26/evalmetry/blob/release-1.1.0/docs/showcase.md). Generation parity is established at the same actual batch size; generation is not batch-invariant.
+Read the [1.1.0 verification report](https://github.com/minguinho26/evalmetry/blob/v1.1.0/docs/verification.md) and the [prediction-depth research showcase](https://github.com/minguinho26/evalmetry/blob/v1.1.0/docs/showcase.md). Generation parity is established at the same actual batch size. Generation is not batch-invariant.
 
 ## Install
 
-Install from PyPI in your Python environment:
+Install from PyPI:
 
 ```bash
 pip install evalmetry
@@ -27,8 +27,7 @@ pip install evalmetry
 
 Evalmetry requires Python >=3.10. Use a compatible CUDA build of PyTorch. The Python import and CLI are both `evalmetry`.
 
-To install this release explicitly, use `pip install evalmetry==1.1.0`.
-For development, clone this repository and run `python -m pip install -e .`.
+To install this release explicitly, use `pip install evalmetry==1.1.0`. For development, clone this repository and run `python -m pip install -e .`.
 
 ## Quick start
 
@@ -46,13 +45,13 @@ Use `report` to generate a report from that run:
 evalmetry report results/quickstart --output report/quickstart
 ```
 
-The first run downloads the model and dataset if needed. Reusing a run directory resumes its recorded configuration; use a different directory for a different experiment.
+The first run downloads the model and dataset if needed. Reusing a run directory resumes its recorded configuration. A different experiment needs a different directory.
 
 Other commands: `collect-research-data` adds optional tensors to a completed run, `debug` reads a saved module trace, and `module-stats` reads saved statistics. Traces and statistics must be enabled during collection. Use `evalmetry <command> --help` for options.
 
 ## Reading results
 
-Evaluation results, manifests and collected signals are written under the selected output directory. Read saved signals with `evalmetry.load_signals(run_dir)`; `evalmetry.describe_schema()` describes the columns.
+Evaluation results, manifests and collected signals are written under the selected output directory. Read saved signals with `evalmetry.load_signals(run_dir)`. `evalmetry.describe_schema()` describes the columns.
 
 ## License
 
