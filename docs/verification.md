@@ -139,3 +139,24 @@ The [artifact record](evidence/release_artifacts_20260920.json) contains the exa
 upload paths, SHA-256 values, file inventories, metadata and installed versions.
 The documentation is on the repository branch; the distributions intentionally
 contain the package and required packaging resources, not verification scripts.
+
+## Historical analysis correction
+
+While preparing the [research showcase](showcase.md), the internal analysis
+helper's gold top-10 arrival metric was found to accept zero-based rank 10
+(eleventh place without ties). Its threshold was corrected from `rank > top_k`
+to `rank >= top_k`, with four boundary regression cases. This helper is not part
+of the distributed package.
+
+Historical top-10 statistics were not recomputed: their original per-layer
+trajectories are unavailable. The retained derived data contains 215 of 25,821
+gold-arrival rows whose final rank is 10 but whose arrival depth was recorded.
+That establishes affected observations, not the total number of affected rows
+or the change in aggregate medians and correlations. Intermediate-layer ranks
+would be needed to determine those effects.
+
+The showcase excludes those statistics and their old plots. Its settlement
+measure uses a separate token-equality calculation and is unaffected by this
+threshold error. The [correction record](evidence/gold_arrival_correction_20260920.json)
+retains the affected-file inventory and validation scope. Historical originals
+remain preserved in the verification repository.
