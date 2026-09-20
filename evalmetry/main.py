@@ -25,6 +25,7 @@ import re
 import sys
 import dataclasses
 import functools
+import time
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
@@ -35,7 +36,7 @@ from .debug import TRACE_BUFFER_EVENTS
 from .storage import FIXED_SETTINGS, SAMPLING_SEED, SCHEMA_VERSION
 
 #: Version of this tool, recorded in every manifest.
-TOOL_VERSION = "0.1.0"
+TOOL_VERSION = "1.1.0"
 
 #: Default number of documents collected per correctness group.
 DEFAULT_COLLECT_LIMIT = 500
@@ -142,6 +143,7 @@ class RunConfig:
         tasks: task names.
         include_path: directories containing local benchmark YAML, JSONL and scoring code.
             Paths inside YAML resolve relative to that YAML. See examples/custom_benchmarks.
+        num_fewshot: how many examples precede each document. It has no default because there is no value that is right for every task: lm-eval gives each task its own, and silently substituting one here would score gsm8k at 0-shot while the task itself asks for 5. A measurement has to say what it measured.
         save_attention / save_hidden: opt-in signals, both collected in a second pass because correctness is not known during the first one.
         debug: module tracing, off by default.
             Absent from `identity` and `config_hash`: it changes how long a run takes, and with `sync` or `stop_on_nonfinite` whether it finishes, but not what the signals mean.
@@ -149,7 +151,7 @@ class RunConfig:
 
     model_args: str
     tasks: list[str]
-    num_fewshot: int = 0
+    num_fewshot: int
     limit: int | None = None
     batch_size: int | str = 1
     adapter: str | None = None
@@ -182,7 +184,7 @@ class RunConfig:
         """The lm-eval model argument string parsed into a dict.
 
         Example:
-            >>> RunConfig("pretrained=Qwen/Qwen3-8B,dtype=bfloat16", []).model_kwargs()
+            >>> RunConfig("pretrained=Qwen/Qwen3-8B,dtype=bfloat16", [], num_fewshot=0).model_kwargs()
             {'pretrained': 'Qwen/Qwen3-8B', 'dtype': 'bfloat16'}
         """
         parsed: dict[str, str] = {}
@@ -261,7 +263,7 @@ class RunConfig:
         Only a convenience for browsing; `report` reads the manifest and never parses this path.
 
         Example:
-            >>> RunConfig("pretrained=Qwen/Qwen3-8B", ["xnli_ko"]).default_output("ab12cd34")
+            >>> RunConfig("pretrained=Qwen/Qwen3-8B", ["xnli_ko"], num_fewshot=0).default_output("ab12cd34")
             'results/xnli_ko/Qwen__Qwen3-8B/2026-01-31-ab12cd34'   # date varies
         """
         task = "+".join(sorted(self.tasks)) or "unknown-task"
@@ -672,6 +674,60 @@ def _resolved_revision(lm: Any) -> str:
 # --------------------------------------------------------------------------
 
 
+class PhaseTimer:
+    """How long each phase of a run took, recorded on every run rather than on request.
+
+    Not behind a flag. A run that cannot say how long its evaluation took cannot be
+    compared against another one, and reading a clock costs nothing beside the work it
+    measures - so the choice to record it is not the user's to make and not theirs to
+    forget. The numbers land in the manifest under `timings`.
+
+    CUDA queues kernels asynchronously, so a naive `perf_counter` pair reports how long
+    the work took to *launch*. Every boundary therefore synchronises first. That is done
+    at phase boundaries only, where a handful of syncs disappear into minutes of work;
+    `--debug-sync` is the per-module variant and exists to attribute time inside a trace,
+    not to measure a run.
+
+    Phases do not have to cover the whole run and may be absent: a run without a
+    collection pass simply has no `collection` key. `end_to_end` always spans the object's
+    lifetime, so it is not the sum of the others.
+    """
+
+    def __init__(self) -> None:
+        self._phases: dict[str, float] = {}
+        self._started = time.perf_counter()
+
+    @staticmethod
+    def _synchronize() -> None:
+        """Wait for queued CUDA work, when there is any to wait for.
+
+        Skipped unless a context already exists, so timing a CPU run does not initialise
+        CUDA just to measure nothing. Without torch at all there is no device work in
+        flight, so there is nothing to wait for either.
+        """
+        try:
+            import torch
+        except ImportError:
+            return
+        if torch.cuda.is_available() and torch.cuda.is_initialized():
+            torch.cuda.synchronize()
+
+    @contextmanager
+    def phase(self, name: str):
+        """Time one phase, recording it even if the phase raises."""
+        self._synchronize()
+        started = time.perf_counter()
+        try:
+            yield
+        finally:
+            self._synchronize()
+            self._phases[name] = round(time.perf_counter() - started, 3)
+
+    def finish(self) -> dict[str, float]:
+        self._synchronize()
+        return {**self._phases, "end_to_end": round(time.perf_counter() - self._started, 3)}
+
+
 @contextmanager
 def _tracing(config: RunConfig, model: Any, run_dir: str, name: str = "trace"):
     """Hook the model for the duration, or do nothing at all.
@@ -795,6 +851,7 @@ def cmd_run(config: RunConfig) -> str:
         The run directory.
     """
     validate_single_gpu_execution(config)
+    timer = PhaseTimer()
 
     import lm_eval
 
@@ -811,7 +868,8 @@ def cmd_run(config: RunConfig) -> str:
     unknown = set(config.signals) - {"logit_lens", "similarity"}
     if unknown:
         raise ValueError(f"unknown signals: {sorted(unknown)}")
-    lm = load_model(config)
+    with timer.phase("model_load"):
+        lm = load_model(config)
     adapter = resolve_model_adapter(config, lm)
     environment = check_environment(lm.model)
 
@@ -866,9 +924,10 @@ def cmd_run(config: RunConfig) -> str:
         lm.attach_recorder(recorder)
 
     # 3. 평가와 judge 채점을 완료하고 문서별 결과를 저장한다.
-    results, samples = _evaluate_and_save_samples(
-        config, lm, writer, run_dir, task_manager, evaluation_tasks
-    )
+    with timer.phase("evaluate"):
+        results, samples = _evaluate_and_save_samples(
+            config, lm, writer, run_dir, task_manager, evaluation_tasks
+        )
 
     # Read before the collection pass, which may switch the model to eager attention: the manifest should say what the scored pass actually ran with.
     attn_implementation = getattr(lm.model.config, "_attn_implementation", "unknown")
@@ -888,7 +947,7 @@ def cmd_run(config: RunConfig) -> str:
     if config.save_attention or config.save_hidden or any(h.pass_name == "collection" for h in config.resolved_hooks):
         # Its own trace: the collection pass forces eager attention and materialises a
         # (heads, seq, seq) map per block, which is the heaviest thing this tool does.
-        with _tracing(config, lm.model, run_dir, name="collection"):
+        with timer.phase("collection"), _tracing(config, lm.model, run_dir, name="collection"):
             collection_counts = _collect_research_data(
                 config, lm, adapter, writer, run_dir, hidden_layers
             )
@@ -920,6 +979,7 @@ def cmd_run(config: RunConfig) -> str:
             "evaluation_completed": True,
             "generation_kwargs_source": "lm-eval task config",
             "debug": config.debug.manifest_entry(),
+            "timings": timer.finish(),
         },
     )
     storage.write_results(run_dir, manifest, results.get("results", {}), writer.signal_files())
@@ -1103,6 +1163,10 @@ def _collection_config_from_manifest(
         model_config=saved_model.get("config", {}),
         signals=(),
         tasks=list(manifest["tasks"]),
+        # Carried from the manifest rather than defaulted: collection replays the prompts the
+        # evaluation stored, so this does not build them, but a config that disagreed with the
+        # run it describes would be a trap for anyone reading it back.
+        num_fewshot=manifest["num_fewshot"],
         batch_size=1,                      # collection is always unbatched
         adapter=saved_model.get("adapter") if saved_model else manifest.get("model_type"),
         save_attention=args.save_attention,
@@ -1121,11 +1185,13 @@ def cmd_collect_research_data(args: argparse.Namespace) -> str:
 
     Model and tokenizer settings come from the run's manifest, never from the command line: the two passes have to produce identical input tokens, so letting them be re-specified would be a way to get that wrong.
     """
+    timer = PhaseTimer()
     run_dir = args.run_dir
     manifest = storage.read_manifest(run_dir)
     config = _collection_config_from_manifest(args, manifest)
     saved_model = manifest.get("custom_model", {})
-    lm = load_model(config)
+    with timer.phase("model_load"):
+        lm = load_model(config)
     if saved_model and config.model_provenance != saved_model:
         raise ValueError("custom model implementation/config/checkpoint changed since evaluation")
     from .models import resolve_model_adapter
@@ -1137,7 +1203,7 @@ def cmd_collect_research_data(args: argparse.Namespace) -> str:
         else None
     )
     writer = storage.RunWriter(run_dir)
-    with _tracing(config, lm.model, run_dir, name="collection"):
+    with timer.phase("collection"), _tracing(config, lm.model, run_dir, name="collection"):
         counts = _collect_research_data(
             config, lm, adapter, writer, run_dir, hidden_layers,
             write_steps=not manifest.get("internal_signals_available", True),
@@ -1156,6 +1222,7 @@ def cmd_collect_research_data(args: argparse.Namespace) -> str:
     storage.write_results(run_dir, payload["manifest"], payload["results"], writer.signal_files())
     collection_metadata = {
         "collection_counts": counts,
+        "collection_timings": timer.finish(),
         "collection_attn_implementation": getattr(
             lm.model.config, "_attn_implementation", "unknown"),
         "options": options,
@@ -1328,7 +1395,10 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--tasks", required=True, help="comma separated lm-eval task names")
     run.add_argument("--include-path", action="append", default=[],
                      help="local benchmark directory; repeat for multiple bundles")
-    run.add_argument("--num-fewshot", type=int, default=0)
+    run.add_argument("--num-fewshot", type=int, required=True,
+                     help="examples before each document. Required: lm-eval gives each "
+                          "task its own default and this overrides it for every task in "
+                          "the run, so the run has to state which number it used")
     run.add_argument("--limit", type=int, default=None, help="cap on the number of documents")
     run.add_argument("--batch-size", type=parse_batch_size, default=1,
                      help='positive integer, or "auto" to let lm-eval find the '

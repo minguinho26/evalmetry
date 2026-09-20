@@ -985,8 +985,19 @@ def resolve_database(path: str, pass_name: str = "trace") -> Path:
         return given
     if (given / "statistics.sqlite").is_file():
         return given / "statistics.sqlite"
-    found = sorted((given / "debug" / "module_stats" / pass_name).glob("*/statistics.sqlite"))
+    root = given / "debug" / "module_stats"
+    found = sorted((root / pass_name).glob("*/statistics.sqlite"))
     if not found:
+        # "nothing was recorded" and "recorded, but not this pass" need different advice.
+        # A run with --module-stats but no collection pass is not misconfigured, so telling
+        # its owner to re-run with --module-stats sends them to change a flag already set.
+        recorded = sorted(directory.name for directory in root.glob("*")
+                          if any(directory.glob("*/statistics.sqlite")))
+        if recorded:
+            raise FileNotFoundError(
+                f"no {pass_name} module statistics under {path}; this run recorded: "
+                f"{', '.join(recorded)}. The collection pass is written only when the run "
+                f"also collects (--save-attention, --save-hidden or a collection hook).")
         raise FileNotFoundError(f"no module statistics under {path}; run with --module-stats")
     return found[-1]
 

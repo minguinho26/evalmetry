@@ -3,7 +3,7 @@
 This is a debugging aid, off by default, and deliberately separate from `recorder.py`.
 The recorder exists to capture *signals* and is driven by what the reducers ask for; this exists to capture *what happened*, must keep working when the recorder is not recording (a batch-size probe, a document already on disk), and must survive the process that produced it.
 
-CLI options are available through `evalmetry debug --help`; additional review tasks are in REVIEW_CPU.md and REVIEW_GPU.md.
+CLI options are available through `evalmetry debug --help`.
 Three things are worth repeating here, because they are what the code looks strange without.
 
 **`always_call=True` is not used, on purpose.**
